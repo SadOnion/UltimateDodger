@@ -8,13 +8,35 @@ public class Spawner : MonoBehaviour
     [SerializeField]CircleSpawner spawner =null;
     [SerializeField]BombSpawner bombSpawner=null;
     public GameObject[] circleEnemies;
+    public MonoSpawnData[] monoSpawnDatas;
     public Coin coin;
+    public Walls walls;
+    Coroutine spawnMethod;
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Spawn());
-        StartCoroutine(SpawnBombs());
+        spawnMethod = StartCoroutine(SpawnRandomAll());
         StartCoroutine(SpawnCoin());
+        StartCoroutine(NextMethod());
+    }
+    
+    private IEnumerator NextMethod()
+    {
+        float rand = UnityEngine.Random.Range(8,10);
+        yield return new WaitForSeconds(rand);
+        StopCoroutine(spawnMethod);
+        yield return new WaitForSeconds(3);
+        IEnumerator newMethod = ChooseNewMethod();
+        spawnMethod = StartCoroutine(newMethod);
+        StartCoroutine(NextMethod());
+    }
+
+    private IEnumerator ChooseNewMethod()
+    {
+        int rand = UnityEngine.Random.Range(0,3);
+         walls.ChangeColor(monoSpawnDatas[rand].color);
+        return Spawn(rand);
     }
 
     private IEnumerator SpawnBombs()
@@ -24,13 +46,28 @@ public class Spawner : MonoBehaviour
         StartCoroutine(SpawnBombs());
 
     }
+     IEnumerator Spawn(int index)
+    {
+        yield return new WaitForSeconds(monoSpawnDatas[index].spawnTime);
+        spawner.SpawnOnRandomPosition(monoSpawnDatas[index].projectile);
+        StartCoroutine(Spawn(index));
 
-    IEnumerator Spawn()
+    }
+    IEnumerator SpawnRandom()
     {
         yield return new WaitForSeconds(1);
         spawner.SpawnOnRandomPosition(circleEnemies[UnityEngine.Random.Range(0,circleEnemies.Length)]);
-        StartCoroutine(Spawn());
+        StartCoroutine(SpawnRandom());
 
+    }
+    IEnumerator SpawnRandomAll()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+        yield return new WaitForSeconds(1);
+        spawner.SpawnOnRandomPosition(circleEnemies[UnityEngine.Random.Range(0,circleEnemies.Length)]);
+        }
+        bombSpawner.SpawnBomb(); 
     }
     IEnumerator SpawnCoin()
     {

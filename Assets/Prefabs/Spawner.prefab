@@ -94,7 +94,13 @@ MonoBehaviour:
   circleEnemies:
   - {fileID: 6644179125453960615, guid: d433776cc3c6ce641af3251914daf6a6, type: 3}
   - {fileID: 6644179125453960615, guid: 4c386378e98dcf54893bd98a01151110, type: 3}
+  - {fileID: 1681145430687934181, guid: 3e38078346643f04f90a7fa6473bf5d4, type: 3}
+  monoSpawnDatas:
+  - {fileID: 11400000, guid: 5589842948f51364c8307c746eaeec90, type: 2}
+  - {fileID: 11400000, guid: 81fccebb21a8a844a91dfb4a78142856, type: 2}
+  - {fileID: 11400000, guid: 0952d63cc222d5541accc4c8ecd87bb9, type: 2}
   coin: {fileID: 7690625153364411774, guid: 3db7ac32428660d498ec3078973270f7, type: 3}
+  walls: {fileID: 0}
 --- !u!1 &8204383313986373913
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,4 +145,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bomb: {fileID: 8649223902472044845, guid: d4ce858dd9b609948b48c49877669bb9, type: 3}
-  speed: 4
+  speed: 1
