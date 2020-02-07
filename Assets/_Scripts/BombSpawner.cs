@@ -5,11 +5,18 @@ using UnityEngine;
 
 public class BombSpawner : MonoBehaviour
 {
-    private float xMin=-8,xMax=8;
-    private float yMin=-4,yMax=4;
+    private float xMin,xMax,yMin,yMax;
+    [SerializeField]Bounds bounds;
     [SerializeField]GameObject bomb=null;
     public float speed;
 
+    private void Start()
+    {
+        xMin = bounds.min.x;
+        xMax = bounds.max.x;
+        yMin = bounds.min.y;
+        yMax = bounds.max.y;
+    }
     public void SpawnBomb()
     {
         int rand = UnityEngine.Random.Range(0,4);

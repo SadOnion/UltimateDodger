@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField]CircleSpawner spawner =null;
     [SerializeField]BombSpawner bombSpawner=null;
+
     public GameObject[] circleEnemies;
     public MonoSpawnData[] monoSpawnDatas;
     public Coin coin;
@@ -64,7 +65,7 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         spawner.SpawnOnRandomPosition(circleEnemies[UnityEngine.Random.Range(0,circleEnemies.Length)]);
         }
         bombSpawner.SpawnBomb(); 

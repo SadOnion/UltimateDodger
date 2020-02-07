@@ -8,9 +8,15 @@ public class Tripler : BaseEnemy
     public UnityEvent OnSplit;
     public GameObject triplet;
     public float splitAngle;
+    private GameObject[] players;
+    protected override void Start()
+    {
+        base.Start();
+        players = PlayerController.Instance.circles;
+    }
     private void Update()
     {
-        if(Vector2.Distance(transform.position,PlayerController.Instance.transform.position) <= 5)
+        if(Vector2.Distance(transform.position,players[0].transform.position) <= 5 || Vector2.Distance(transform.position,players[1].transform.position) <= 5)
         {
             Split();
         }

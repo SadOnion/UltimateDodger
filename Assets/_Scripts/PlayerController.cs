@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         _instance=this;
     }
+    public GameObject[] circles;
     public int projectileLayer=10;
     public VariableJoystick joystick;
     private float speed;

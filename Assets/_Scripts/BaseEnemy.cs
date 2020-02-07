@@ -8,7 +8,7 @@ public class BaseEnemy : MonoBehaviour
     protected Rigidbody2D body;
     public float speed;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         body=GetComponent<Rigidbody2D>();
         StartCoroutine(StartMovingTowardsPlayer());
@@ -21,7 +21,11 @@ public class BaseEnemy : MonoBehaviour
     }
     protected Vector2 GetDirection()
     {
-        Vector2 playerPos = PlayerController.Instance.transform.position;
+        GameObject[] obj = PlayerController.Instance.circles;
+        float dist0 = Vector2.Distance(body.position,obj[0].transform.position);
+        float dist1 = Vector2.Distance(body.position,obj[1].transform.position);
+        
+        Vector2 playerPos = dist0>dist1?obj[1].transform.position:obj[0].transform.position;
         Vector2 dir = playerPos-body.position;
         dir.Normalize();
         return dir;

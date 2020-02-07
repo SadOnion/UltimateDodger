@@ -15,4 +15,4 @@ MonoBehaviour:
   color: {r: 1, g: 0.6304714, b: 0, a: 1}
   projectile: {fileID: 6644179125453960615, guid: 4c386378e98dcf54893bd98a01151110,
     type: 3}
-  spawnTime: 0.75
+  spawnTime: 1.5
